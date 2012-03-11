@@ -14,7 +14,6 @@ class ClientApplication < ActiveRecord::Base
   validates_format_of :callback_url, :with => /\Ahttp(s?):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/i, :allow_blank=>true
 
   attr_accessor :token_callback_url
-
   def self.find_token(token_key)
     token = OauthToken.find_by_token(token_key, :include => :client_application)
     if token && token.authorized?
